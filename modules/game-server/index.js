@@ -6,22 +6,33 @@ var socketIO = require('socket.io');
 var app = express();
 var server = http.Server(app);
 var io = socketIO(server);
-app.set('port', 5000);
+app.set('port', 5001);
 app.use('/static', express.static(__dirname + '/static'));
 // Routing
 app.get('/', function(request, response) {
-  response.sendFile(path.join(__dirname, 'index.html'));
+    response.sendFile(path.join(__dirname, 'index.html'));
 });
 // Starts the server.
-server.listen(5000, function() {
-  console.log('Starting server on port 5000');
+server.listen(5001, function() {
+    console.log('Starting server on port 5001');
 });
 
 // Add the WebSocket handlers
 io.on('connection', function(socket) {
     console.log("socketIO connected successfully");
+    console.log("Socket connected: " + socket.id);
+    
+    socket.on('action', (action) => {
+        if(action.type === 'server/hello'){
+            console.log('Got hello data!', action.data);
+            socket.emit('action', {type:'message', data:'good day!'});
+        }
+    });
+
+}, function(error) {
+    console.log(error)
 });
 
 setInterval(function() {
-  io.sockets.emit('message', 'hie!');
+    io.sockets.emit('message', 'hie!');
 }, 1000);

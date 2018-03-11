@@ -1,14 +1,21 @@
-import { applyMiddleware, createStore, compose } from 'redux';
+import { applyMiddleware, createStore, compose, combineReducers } from 'redux';
 import promise from 'redux-promise-middleware';
 import thunk from 'redux-thunk'
 import createLogger from 'redux-logger';
+
+import createSocketIoMiddleware from 'redux-socket.io';
+import io from 'socket.io-client';
+
+import reducer from "./reducers";
+
+let socket = io('http://localhost:5001');
+let socketIoMiddleware = createSocketIoMiddleware(socket, "server/");
 
 const logger = createLogger({
     //empty options
 });
 
-import reducer from "./reducers";
-const middleware = applyMiddleware(  promise(),  thunk, logger );
+const middleware = applyMiddleware(socketIoMiddleware, promise(), thunk, logger);
 let store;
 
 if (window.__REDUX_DEVTOOLS_EXTENSION__){
@@ -16,5 +23,12 @@ if (window.__REDUX_DEVTOOLS_EXTENSION__){
 } else {
      store = createStore(reducer, middleware);
 }
+
+
+store.subscribe(()=>{
+  console.log('new client state', store.getState());
+});
+store.dispatch({type:'server/hello', data:Math.random()});
+
 
 export default store
