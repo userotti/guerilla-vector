@@ -1,7 +1,17 @@
 import { combineReducers } from 'redux';
-import socketState from './socketState/index.js'
+import socketReducer from './socket'
+import userReducer from './user'
+import scenesReducer from './scenes'
+import sessionReducer from './session'
+
+
 
 //Add the the other reducer strutures
 export default combineReducers({
-    socketState,
+    sessionState: sessionReducer,
+    userState: userReducer,
+    socketState: socketReducer,
+    scenesState: scenesReducer,
+
+
 })

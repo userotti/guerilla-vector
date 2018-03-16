@@ -1,43 +1,65 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-
 import styled from 'styled-components';
+import {
+    BrowserRouter as Router,
+    Route,
+} from 'react-router-dom';
+
+import LandingPage from './scenes/Landing';
+import SignUpPage from './scenes/SignUp';
+import SignInPage from './scenes/SignIn';
+import PasswordForgetPage from './scenes/PasswordForget';
+import HomePage from './scenes/Home';
+import AccountPage from './scenes/Account';
+
+import Navigation from './components/Navigation';
+import withAuthentication from './components/Session/withAuthentication';
+import * as routes from './constants/routes';
+
+
+// import { newUserLanded } from './actions/socketActions';
+
+// import WelcomeScene from './scenes/welcomeScene';
 
 const ContainerDiv = styled.div`
-    overflow: hidden;
-    position: absolute;
-    background-color: black;
-    bottom:0;
-    left:0;
-    top:0;
-    right: 0;
+overflow: hidden;
+position: absolute;
+background-color: black;
+bottom:0;
+left:0;
+top:0;
+right: 0;
 `
 
-@connect((store)=>{
-    return {
+const ConnectionIndicatorH2 = styled.h2`
+position: absolute;
+color: white;
+bottom:20px;
+left:20px;
+`
 
-    };
-})
-class App extends Component {
+const App = () =>
+<Router>
+    <div className="app">
+        <Navigation />
 
-    componentDidMount() {
+        <hr/>
 
-    }
+        <Route exact path={routes.LANDING} component={() => <LandingPage />} />
+        <Route exact path={routes.SIGN_UP} component={() => <SignUpPage />} />
+        <Route exact path={routes.SIGN_IN} component={() => <SignInPage />} />
+        <Route exact path={routes.PASSWORD_FORGET} component={() => <PasswordForgetPage />} />
+        <Route exact path={routes.HOME} component={() => <HomePage />} />
+        <Route exact path={routes.ACCOUNT} component={() => <AccountPage />} />
 
-    componentWillUnmount() {
+        <hr/>
 
-    }
+        <span>Found in <a href="https://roadtoreact.com/course-details?courseId=TAMING_THE_STATE">Taming the State in React</a></span> | <span>Star the <a href="https://github.com/rwieruch/react-redux-firebase-authentication">Repository</a></span> | <span>Receive a <a href="https://www.getrevue.co/profile/rwieruch">Developer's Newsletter</a></span>
+    </div>
+</Router>
 
-    render() {
-        return (
-            <ContainerDiv>
-
-            </ContainerDiv>
-        );
-    }
-}
-
-export default App;
+export default withAuthentication(App);
 
 // import React, { Component } from 'react'
 // import { connect } from 'react-redux'

@@ -24,11 +24,4 @@ if (window.__REDUX_DEVTOOLS_EXTENSION__){
      store = createStore(reducer, middleware);
 }
 
-
-store.subscribe(()=>{
-  console.log('new client state', store.getState());
-});
-store.dispatch({type:'server/hello', data:Math.random()});
-
-
 export default store
