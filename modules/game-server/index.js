@@ -18,7 +18,7 @@ app.get('/signin', function(request, response) {
     response.sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.get('/home', function(request, response) {
+app.get('/dashboard', function(request, response) {
     response.sendFile(path.join(__dirname, 'index.html'));
 });
 

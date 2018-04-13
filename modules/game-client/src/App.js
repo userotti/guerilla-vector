@@ -10,7 +10,7 @@ import LandingPage from './scenes/Landing';
 import SignUpPage from './scenes/SignUp';
 import SignInPage from './scenes/SignIn';
 import PasswordForgetPage from './scenes/PasswordForget';
-import HomePage from './scenes/Home';
+import DashboardPage from './scenes/Dashboard';
 import AccountPage from './scenes/Account';
 
 import Navigation from './components/Navigation';
@@ -50,7 +50,7 @@ const App = () =>
         <Route exact path={routes.SIGN_UP} component={() => <SignUpPage />} />
         <Route exact path={routes.SIGN_IN} component={() => <SignInPage />} />
         <Route exact path={routes.PASSWORD_FORGET} component={() => <PasswordForgetPage />} />
-        <Route exact path={routes.HOME} component={() => <HomePage />} />
+        <Route exact path={routes.DASHBOARD} component={() => <DashboardPage />} />
         <Route exact path={routes.ACCOUNT} component={() => <AccountPage />} />
 
         <hr/>
@@ -69,7 +69,7 @@ export default withAuthentication(App);
 // import MenuBurgerButton from './components/MenuBurgerButton';
 // import MenuDrawer from './components/MenuDrawer';
 // import InfoBar from './components/InfoBar';
-// import HomeButton from './components/HomeButton';
+// import DashboardButton from './components/DashboardButton';
 // import styled from 'styled-components';
 //
 // import SettingsScene from './scenes/Settings';
@@ -127,8 +127,8 @@ export default withAuthentication(App);
 //                 <MenuBurgerButton>
 //                 </MenuBurgerButton>
 //
-//                 <HomeButton>
-//                 </HomeButton>
+//                 <DashboardButton>
+//                 </DashboardButton>
 //
 //                 <InfoBar>
 //                 </InfoBar>

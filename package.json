@@ -17,5 +17,6 @@
     "webpack": "^1.12.9"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {}
 }
